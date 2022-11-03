@@ -17,8 +17,7 @@ pipeline {
        file(credentialsId: 'kubeconfig', variable: 'kubeconfig'), {
                 script {
                     sh '''
-                                helm upgrade -i apache myapache --namespace jenkins-test --debug
-                        fi
+                        helm upgrade -i apache myapache --namespace jenkins-test --debug
                     '''
                 }
         sleep 60
