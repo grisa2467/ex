@@ -13,7 +13,8 @@ pipeline {
 
    stages('Kubernets deploy') {
         steps {
-#            withCredentials([kubeconfigFile(credentialsId: "EKS-${ENVIRONMENT}", variable: 'KUBECONFIG'), string(credentialsId: "${ENVIRONMENT}_bonus-management-db_pass_base64", variable: 'IBETUSER_DB_PASSWORD'), usernamePassword(credentialsId: 'jenkins-ibet', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+   withCredentials([
+       file(credentialsId: 'kubeconfig', variable: 'kubeconfig'), {
                 script {
                     sh '''
                                 helm upgrade -i apache myapache --namespace jenkins-test --debug
