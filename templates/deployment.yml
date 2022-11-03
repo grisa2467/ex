@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myd
+  name: myd
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: myd
+  template:
+    metadata:
+      labels:
+        app: myd
+    spec:
+      containers:
+      - image: deepak2007/apache_php
+        name: apache-php

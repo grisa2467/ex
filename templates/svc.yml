@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: {{ .Values.myservice.type }}
+  selector:
+    app: myd
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: {{ .Values.myservice.N_port }}     #  (default: 30000-32767)
+      
