@@ -27,31 +27,3 @@ pipeline {
     }
 
 }
-
-
-pipeline {
-    agent any;
-    stages {
-        stage('debug') {
-            steps {
-                withCredentials([
-                    file(credentialsId: 'kubeconfig', variable: 'FILE'),
-                    [
-                        $class: 'AmazonWebServicesCredentialsBinding',
-                        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                        credentialsId: 'awstoEKS',
-                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-                    ]
-                    
-                ]) {
-                    
-                  
-                  sh """
-                    cat $FILE
-                    curl -u $AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY https:/do.something.aws.com > output
-                  """
-                }
-            }
-        }
-    }
-}
