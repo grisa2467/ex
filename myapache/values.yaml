@@ -1,0 +1,4 @@
+replicaCount: 5
+myservice:
+   type: NodePort
+   N_port: 30005
