@@ -13,8 +13,8 @@ pipeline {
 
    stages('Kubernets deploy') {
         steps {
-   withCredentials([
-       file(credentialsId: 'kubeconfig', variable: 'kubeconfig'), {
+           withCredentials([
+               file(credentialsId: 'kubeconfig', variable: 'kubeconfig'), {
                 script {
                     sh '''
                         helm upgrade -i apache myapache --namespace jenkins-test --debug
