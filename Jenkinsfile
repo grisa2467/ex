@@ -22,7 +22,7 @@ pipeline {
                         kubectl get pods -n jenkins-test
                     '''
                 }
-        sleep 60
+        sleep 3
             }
         }
     }
