@@ -18,10 +18,8 @@ pipeline {
                file(credentialsId: 'kubeconfig', variable: 'kubeconfig')]) {
                 script {
                     sh '''
-                        curl -L https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-amd64 -o /usr/local/bin/helm
-                        chmod +x /usr/local/bin/helm
-                        helm version
                         helm upgrade -i apache myapache --namespace jenkins-test --debug
+                        kubectl get pods -n jenkins-test
                     '''
                 }
         sleep 60
